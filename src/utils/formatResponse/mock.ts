@@ -1,5 +1,3 @@
-import {IForecastFormatted} from "../../models/IWeather";
-
 export const raw1 = {
     "latitude": 50.4375,
     "longitude": 30.5,

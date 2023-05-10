@@ -1,3 +1,5 @@
+/* models of raw and formatted forecast data */
+
 export interface IForecastFormatted {
     latitude: number,
     longitude: number,
