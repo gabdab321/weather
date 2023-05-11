@@ -1,0 +1,18 @@
+.switcher {
+    display: flex;
+
+    height: 80%;
+
+    & img:nth-child(1) {
+        margin-right: 10px;
+    }
+}
+
+.flag {
+    cursor: pointer;
+    transition: 0.5s all;
+
+    &:hover {
+      transform: scale(1.07);
+    }
+}
