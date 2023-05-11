@@ -11,7 +11,7 @@ declare module 'i18next' {
 
 i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
     fallbackLng: "ua",
-    debug: true,
+    debug: false,
     detection: {
         order: ["queryString", "cookie"],
     },

@@ -1,8 +1,8 @@
 import {IForecastFormatted, IForecastRaw} from "../../models/IWeather";
 
 /**
- * Formats API data into object that is more simple and easier to work with.
- * @param data {IForecastRaw} - API data that is going to be formatted.
+ * Formats ForecastAPI data into object that is more simple and easier to work with.
+ * @param data {IForecastRaw} - ForecastAPI data that is going to be formatted.
  * @returns {IForecastFormatted} - formatted version of provided data  */
 
 export function formatResponse(data: IForecastRaw): IForecastFormatted {
