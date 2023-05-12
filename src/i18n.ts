@@ -10,7 +10,7 @@ declare module 'i18next' {
 }
 
 i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
-    fallbackLng: "ua",
+    fallbackLng: "uk",
     debug: false,
     detection: {
         order: ["queryString", "cookie"],

@@ -6,6 +6,7 @@ export interface IPlace {
         formatted: string
         lat: number,
         lon: number,
+        place_id: number
     }
 }
 

@@ -16,7 +16,7 @@ const LanguageSwitcher = () => {
 
     return (
         <div className={cl.switcher}>
-            <img onClick={() => changeLanguage("ua")} className={cl.flag} src={uaFlag} alt="ukraine"/>
+            <img onClick={() => changeLanguage("uk")} className={cl.flag} src={uaFlag} alt="ukraine"/>
             <img onClick={() => changeLanguage("en")} className={cl.flag} src={gbFlag} alt="great britain"/>
         </div>
     );
