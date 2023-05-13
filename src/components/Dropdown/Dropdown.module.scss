@@ -15,6 +15,10 @@
     top: calc(100% + 5px);
 
     z-index: 1000;
+
+    @media screen and (max-width: 600px) {
+        width: calc(100% - 10px);
+    }
 }
 
 .item_list {
@@ -30,6 +34,10 @@
     margin-left: 10px;
 
     transition: 0.6s all;
+
+    @media screen and (max-width: 600px) {
+        margin-left: 5px;
+    }
 }
 
 .item {
@@ -61,5 +69,13 @@
 
     &:nth-child(1) {
         border: 0;
+    }
+
+    @media screen and (max-width: 600px) {
+        font-size: 12px;
+
+        & p {
+            margin-left: 5px;
+        }
     }
 }

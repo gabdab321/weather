@@ -8,13 +8,26 @@
     padding-right: 30px;
 
     position: relative;
+
+    @media screen and (max-width: 600px) {
+        padding-right: 10px;
+    }
 }
 
 .icon {
+    height: 24px;
+
     position: absolute;
 
     left: 10px;
     top: 7px;
+
+    @media screen and (max-width: 600px) {
+        height: 18px;
+
+        left: 7px;
+        top: 9px;
+    }
 }
 
 .input {
@@ -37,5 +50,10 @@
 
     &::placeholder {
         color: #8A8A8A
+    }
+
+    @media screen and (max-width: 600px) {
+        font-size: 12px;
+        padding: 10px 8px 10px 32px;
     }
 }
