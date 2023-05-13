@@ -2,7 +2,6 @@
 
 .dropdown {
     display: flex;
-    flex-direction: column;
 
     width: calc(100% - 30px);
     max-height: 500px;
@@ -11,8 +10,6 @@
 
     border-radius: 12px;
 
-    padding: 10px 20px;
-
     position: absolute;
 
     top: calc(100% + 5px);
@@ -20,8 +17,17 @@
     z-index: 1000;
 }
 
+.item_list {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
+
 .icon {
     color: $thirdlyColor;
+
+    margin-left: 10px;
 
     transition: 0.6s all;
 }

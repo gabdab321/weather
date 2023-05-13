@@ -13,9 +13,6 @@ import Dropdown from "../Dropdown/Dropdown";
 const Search = () => {
     const { i18n, t } = useTranslation()
 
-    /* dropdown visibility */
-    const [dropdown, setDropdown] = useState<boolean>(false)
-
     /* input value */
     const [query, setQuery] = useState<string>("")
 
@@ -52,7 +49,7 @@ const Search = () => {
             />
             <FontAwesomeIcon className={cl.icon} icon={faMagnifyingGlassLocation} size="xl" style={{color: "#ffffff",}} />
 
-            <Dropdown visible={dropdown} places={places} />
+            <Dropdown places={places} />
         </div>
     );
 };
