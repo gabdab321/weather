@@ -15,6 +15,8 @@ interface DropdownProps {
    {visible} - defines visibility of the component.
 */
 const Dropdown = ({visible, places}: DropdownProps) => {
+    
+
     return (
         <>
             {visible
