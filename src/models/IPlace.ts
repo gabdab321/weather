@@ -3,7 +3,10 @@ export interface IPlace {
     properties: {
         address_line1: string,
         address_line2: string,
-        formatted: string
+        city: string,
+        country: string,
+        state: string,
+        formatted: string,
         lat: number,
         lon: number,
         place_id: number
