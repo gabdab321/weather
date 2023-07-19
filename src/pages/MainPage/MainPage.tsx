@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {useAppSelector} from "../../hooks/reduxHooks";
 import ForecastAPI from "../../services/ForecastAPI";
 import {IForecastFormatted} from "../../models/IWeather";
+import cl from "./MainPage.module.scss"
+import Loader from "../../components/UI/Loader/Loader";
 
 const MainPage = () => {
     const coords = useAppSelector(state => state.location)
@@ -19,8 +21,13 @@ const MainPage = () => {
         getForecast()
     }, [coords])
 
+    console.log(forecast)
+
     return (
         <div>
+            <div className={cl.forecast_container}>
+                <Loader/>
+            </div>
             {forecast && <h1>{forecast.forecast[`${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()}`].daily.tempMax} --- {forecast.forecast[`${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()}`].daily.tempMin}</h1>}
         </div>
     );
