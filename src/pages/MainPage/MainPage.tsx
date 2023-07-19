@@ -11,8 +11,6 @@ const MainPage = () => {
     const [forecast, setForecast] = useState<IForecastFormatted | null>(null)
 
     useEffect(() => {
-        console.log("a")
-
         async function getForecast() {
             const data = await ForecastAPI.getForecast(coords)
             setForecast(data)

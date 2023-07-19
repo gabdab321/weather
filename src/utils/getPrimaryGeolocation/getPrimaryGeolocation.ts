@@ -17,6 +17,8 @@ export default function getPrimaryGeolocation(dispatch: Dispatch<any>) {
 
     /* if user allows to use his geolocation */
     function successCallback(position: GeolocationPosition) {
+        console.log(position)
+
         /* sets user's geolocation */
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;

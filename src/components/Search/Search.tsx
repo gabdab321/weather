@@ -8,8 +8,6 @@ import {IPlace} from "../../models/IPlace";
 import Dropdown from "../Dropdown/Dropdown";
 import useDebounce from "../../hooks/useDebounce";
 
-//TODO: make debounce
-
 /* Component for searching the desired location */
 const Search = () => {
     const { i18n, t } = useTranslation()
@@ -17,7 +15,7 @@ const Search = () => {
     const [dropdown, setDropdown] = useState<boolean>(false) // dropdown visibility
 
     const [query, setQuery] = useState<string>("") // input value
-    const debouncedQuery = useDebounce<string>(query, 700) // debounced input value
+    const debouncedQuery = useDebounce<string>(query, 500) // debounced input value
 
     const [places, setPlaces] = useState<IPlace[]>([]) // an array of autocompleted places
 
@@ -67,7 +65,7 @@ const Search = () => {
             />
             <FontAwesomeIcon className={cl.icon} icon={faMagnifyingGlassLocation} style={{color: "#ffffff",}} />
 
-            <Dropdown visible={dropdown} places={places} />
+            <Dropdown setQuery={setQuery} visible={dropdown} places={places} />
         </div>
     );
 };

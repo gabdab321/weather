@@ -5,43 +5,31 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faLocationDot} from "@fortawesome/free-solid-svg-icons";
 import {useAppDispatch} from "../../hooks/reduxHooks";
 import {setLocation} from "../../redux/slices/locationSlice";
+import {formatPlace} from "../../utils/formatPlace/formatPlace";
 
 interface DropdownProps {
     visible: boolean
     places: IPlace[]
+    setQuery: React.Dispatch<React.SetStateAction<string>>
 }
 
 /* renders list of places.
    as props takes two values:
    {places} - an array of places to render.
    {visible} - defines visibility of the component.
+   {setQuery} - input`s query state function
 */
-const Dropdown = ({visible, places}: DropdownProps) => {
+const Dropdown = ({visible, places, setQuery}: DropdownProps) => {
     const dispatch = useAppDispatch()
 
-    /* dispatches place coordinates on click */
+    /* dispatches coordinates */
     function handleMouseDown(place: IPlace) {
+        setQuery("")
+
         const latitude = place.properties.lat
         const longitude = place.properties.lon
 
         dispatch(setLocation({latitude, longitude}))
-    }
-
-    /* makes formatted place string */
-    function formatPlace(place: IPlace): string {
-        let formatted = ""
-
-        /* defining variables from place properties */
-        const city = place.properties.city
-        const state = place.properties.state
-        const country = place.properties.country
-
-        /* adding variable into formatted string, if it isn't undefined */
-        city ? formatted += city + ", " : formatted += ""
-        state ? formatted += state + ", " : formatted += ""
-        country ? formatted += country : formatted += ""
-
-        return formatted
     }
 
     return (
