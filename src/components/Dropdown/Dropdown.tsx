@@ -32,6 +32,8 @@ const Dropdown = ({visible, places, setQuery}: DropdownProps) => {
         dispatch(setLocation({latitude, longitude}))
     }
 
+    console.log(places)
+
     return (
         <>
             {visible
@@ -41,7 +43,7 @@ const Dropdown = ({visible, places, setQuery}: DropdownProps) => {
                         {places.map(place =>
                             <div onMouseDown={() => handleMouseDown(place)} key={place.properties.place_id} className={cl.item}>
                                 <FontAwesomeIcon className={cl.icon} icon={faLocationDot} size="lg" />
-                                <p>{formatPlace(place)}</p>
+                                <p>{place.properties.formatted}</p>
                             </div>
                         )}
                     </div>

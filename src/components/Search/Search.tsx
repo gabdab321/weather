@@ -7,6 +7,8 @@ import AutocompleteAPI from "../../services/AutocompleteAPI";
 import {IPlace} from "../../models/IPlace";
 import Dropdown from "../Dropdown/Dropdown";
 import useDebounce from "../../hooks/useDebounce";
+import {removeDuplicates} from "../../utils/filterDuplicates/removeDuplicates";
+import {formatPlace} from "../../utils/formatPlace/formatPlace";
 
 /* Component for searching the desired location */
 const Search = () => {
@@ -38,15 +40,27 @@ const Search = () => {
         /* Makes API request on query change */
         async function getAutocomplete() {
             /* takes query as text param and i18n current language as lang param */
-            const data = await AutocompleteAPI.placeAutocomplete(query, i18n.language, 10)
+            let data = await AutocompleteAPI.placeAutocomplete(query, i18n.language, 10)
 
-            /* sets places array if data isn`t null */
+            /* checking is data variable null */
             if(data) {
-                setPlaces(data)
+                /* changing formatted property in all places */
+                data = data.map(place => ({
+                    geometry: place.geometry,
+                    properties: {
+                        ...place.properties,
+                        formatted: formatPlace(place)
+                    }
+                }));
+
+                console.log(data)
+
+                /* setting places with already removed duplicates */
+                setPlaces(removeDuplicates(data))
                 return
             }
 
-            /* sets an empty array if data is null */
+            /* empty array in case if data is null */
             setPlaces([])
         }
 
