@@ -32,8 +32,6 @@ const Dropdown = ({visible, places, setQuery}: DropdownProps) => {
         dispatch(setLocation({latitude, longitude}))
     }
 
-    console.log(places)
-
     return (
         <>
             {visible
