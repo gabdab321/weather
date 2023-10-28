@@ -1,0 +1,19 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 20px;
+}
+
+.location {
+    color: #FFFFFF;
+
+    font-size: 40px;
+
+    text-align: center;
+
+    @media screen and (max-width: 500px){
+        font-size: 30px;
+    }
+}

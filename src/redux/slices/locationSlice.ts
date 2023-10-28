@@ -4,6 +4,8 @@ import defaultLocation from "../../consts/defaultLocation";
 interface locationState {
     latitude: number,
     longitude: number,
+    city: string,
+    region: string
 }
 
 /* localstorage data */
@@ -19,8 +21,11 @@ const locationSlice = createSlice({
     initialState: initialState,
     reducers: {
         setLocation(state: locationState, action: PayloadAction<locationState>) {
-            state.latitude = action.payload.latitude
-            state.longitude = action.payload.longitude
+            state.latitude = action.payload.latitude;
+            state.longitude = action.payload.longitude;
+            state.city = action.payload.city;
+            state.region = action.payload.region;
+
             /* sets new location into localstorage */
             localStorage.setItem("location", JSON.stringify(state))
         }

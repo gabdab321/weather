@@ -5,7 +5,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faLocationDot} from "@fortawesome/free-solid-svg-icons";
 import {useAppDispatch} from "../../hooks/reduxHooks";
 import {setLocation} from "../../redux/slices/locationSlice";
-import {formatPlace} from "../../utils/formatPlace/formatPlace";
 
 interface DropdownProps {
     visible: boolean
@@ -26,10 +25,14 @@ const Dropdown = ({visible, places, setQuery}: DropdownProps) => {
     function handleMouseDown(place: IPlace) {
         setQuery("")
 
-        const latitude = place.properties.lat
-        const longitude = place.properties.lon
+        const location = {
+            latitude: place.properties.lat,
+            longitude: place.properties.lon,
+            city: place.properties.city,
+            region: place.properties.state
+        }
 
-        dispatch(setLocation({latitude, longitude}))
+        dispatch(setLocation(location))
     }
 
     return (

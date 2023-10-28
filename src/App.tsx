@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import AppRouter from "./components/AppRouter";
 import "./styles/App.scss"
 import Navbar from "./components/Navbar/Navbar";
 import {useAppDispatch} from "./hooks/reduxHooks";
-import getPrimaryGeolocation from "./utils/getPrimaryGeolocation/getPrimaryGeolocation";
+import IPAddressAPI from "./services/IPAddressAPI";
+import {setLocation} from "./redux/slices/locationSlice";
 
 function App() {
     const dispatch = useAppDispatch()
-    getPrimaryGeolocation(dispatch)
+
+    useEffect(() => {
+        /* asynchronous getting user`s location by ip, dispatching it into redux */
+        (async () => {
+            const location = await IPAddressAPI.getLocationByIP()
+            dispatch(setLocation(location))
+        })()
+    }, [])
 
     return (
         <div className="App">

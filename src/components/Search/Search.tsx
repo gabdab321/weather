@@ -53,8 +53,6 @@ const Search = () => {
                     }
                 }));
 
-                console.log(data)
-
                 /* setting places with already removed duplicates */
                 setPlaces(removeDuplicates(data))
                 return
