@@ -18,7 +18,7 @@ export default class ForecastAPI {
         const longitude = coords.longitude
 
         /* url string that changes by the method params */
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,precipitation,weathercode,cloudcover,windspeed_10m&models=best_match&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum&forecast_days=${forecastDays}&timezone=auto`
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,precipitation,precipitation_probability,weathercode,cloudcover,uv_index,windspeed_10m,wind_direction_10m&models=best_match&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum&forecast_days=${forecastDays}&timezone=auto`
 
         try {
             /* using axios to get response */
@@ -31,6 +31,7 @@ export default class ForecastAPI {
 
             /* gets raw forecast data */
             const data: IForecastRaw = await response.data
+            console.log(data)
 
             /* returns formatted forecast data */
             return formatResponse(data)

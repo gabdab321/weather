@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import cl from "./ForecastCard.module.scss"
 import {wmo} from "../../consts/wmo";
 import {useTranslation} from "react-i18next";

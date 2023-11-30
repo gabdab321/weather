@@ -17,6 +17,7 @@ const MainPage = () => {
             const longitude = location.longitude
 
             const data = await ForecastAPI.getForecast({latitude, longitude})
+            console.log(data);
             setWeekForecast(data)
         }
 

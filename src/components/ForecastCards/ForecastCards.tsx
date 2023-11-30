@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {IForecastFormatted} from "../../models/IWeather";
 import cl from "./ForecastCards.module.scss";
 import ForecastCard from "../ForecastCard/ForecastCard";
