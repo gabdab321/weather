@@ -6,12 +6,14 @@ export interface IForecastFormatted {
     forecast: {
         [key: string]: {
             daily: {
+                date: string;
                 precipitation: number
                 tempMax: number
                 tempMin: number
                 weatherCode: number
             },
             hourly: {
+                date: string,
                 cloudCover: number[],
                 temp: number[],
                 time: string[],

@@ -3,17 +3,19 @@ import cl from "./ForecastCard.module.scss"
 import {wmo} from "../../consts/wmo";
 import {useTranslation} from "react-i18next";
 import getFormattedDay from "../../utils/getFormattedDay/getFormattedDay";
+import {Link} from "react-router-dom";
+import Arrow from "../../assets/UI/CollapseArrow.svg"
 
 interface ForecastCardProps {
     date: string,
-    dailyForecast: {precipitation: number, tempMax: number, tempMin: number, weatherCode: number},
+    dailyForecast: {date: string, precipitation: number, tempMax: number, tempMin: number, weatherCode: number},
     zIndex: number,
     isContainerHovered: boolean
 }
 
 const ForecastCard = ({date, dailyForecast, zIndex, isContainerHovered}: ForecastCardProps) => {
     /* getting current user`s language */
-    const { i18n } = useTranslation()
+    const { t, i18n } = useTranslation()
     const language = i18n.language
 
     /* shortcut for WMO data */
@@ -64,6 +66,10 @@ const ForecastCard = ({date, dailyForecast, zIndex, isContainerHovered}: Forecas
                 <p>{language === "en" ? wmoData.descriptionEng : wmoData.descriptionUkr}</p>
                 <p className={cl.dot}></p>
                 <p>{Math.floor(dailyForecast.tempMax)}°C</p>
+            </div>
+            <div className={cl.link_container}>
+                <Link className={cl.link} to={`/forecast/${date}`}>{t("details")}</Link>
+                <img src={Arrow} alt=""/>
             </div>
         </div>
     );

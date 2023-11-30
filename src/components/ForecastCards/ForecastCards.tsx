@@ -3,11 +3,10 @@ import {IForecastFormatted} from "../../models/IWeather";
 import cl from "./ForecastCards.module.scss";
 import ForecastCard from "../ForecastCard/ForecastCard";
 import Loader from "../UI/Loader/Loader";
+import {useAppSelector} from "../../hooks/reduxHooks";
 
-interface ForecastCardsProps {
-    forecast: IForecastFormatted | null
-}
-const ForecastCards = ({forecast}: ForecastCardsProps) => {
+const ForecastCards = () => {
+    const weekForecast = useAppSelector(state => state.forecast.forecast);
     /* used in ForecastCard component as an indicator of container hover */
     const [isMouseOver, setIsMouseOver] = useState<boolean>(false)
 
@@ -30,19 +29,21 @@ const ForecastCards = ({forecast}: ForecastCardsProps) => {
         }
     }
 
+
     return (
         <div
             onMouseOver={e => handleMouseOver(e)}
             onMouseOut={e => handleMouseOut(e)}
             className={cl.container}
         >
-            {forecast
+            {weekForecast
+
                 ?
-                Object.keys(forecast.forecast).map((date, index) => <ForecastCard
+                Object.keys(weekForecast.forecast).map((date, index) => <ForecastCard
                     isContainerHovered={isMouseOver}
                     zIndex={100 - index}
                     date={date}
-                    dailyForecast={forecast.forecast[date].daily}
+                    dailyForecast={weekForecast.forecast[date].daily}
                     key={date}
                 />)
                 :

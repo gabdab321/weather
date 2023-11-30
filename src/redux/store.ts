@@ -1,10 +1,12 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {locationReducer} from "./slices/locationSlice";
+import {forecastReducer} from "./slices/forecastSlice";
 
 const store = configureStore({
     devTools: true,
     reducer: {
-        location: locationReducer
+        location: locationReducer,
+        forecast: forecastReducer
     }
 })
 

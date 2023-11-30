@@ -1,4 +1,5 @@
 {
   "searchPlaceholder": "Enter the name of your city...",
-  "location": "Weather in"
+  "location": "Weather in",
+  "details": "Details"
 }
