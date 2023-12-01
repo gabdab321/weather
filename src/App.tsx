@@ -13,7 +13,9 @@ function App() {
         /* asynchronous getting user`s location by ip, dispatching it into redux */
         (async () => {
             const location = await IPAddressAPI.getLocationByIP()
-            dispatch(setLocation(location))
+            if(location) {
+                dispatch(setLocation(location))
+            }
         })()
     }, [])
 

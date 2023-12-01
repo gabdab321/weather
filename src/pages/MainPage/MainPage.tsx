@@ -6,6 +6,8 @@ import ForecastCards from "../../components/ForecastCards/ForecastCards";
 import cl from "./MainPage.module.scss"
 import {useTranslation} from "react-i18next";
 import {setForecast} from "../../redux/slices/forecastSlice";
+import axios from "axios";
+import {formatResponse} from "../../utils/formatResponse/formatResponse";
 
 const MainPage = () => {
     const { t } = useTranslation()
@@ -28,9 +30,10 @@ const MainPage = () => {
         getForecast()
     }, [location])
 
+
     return (
         <div className={cl.main}>
-            <p className={cl.location}>{t("location")} {location.city}, {location.region}</p>
+            <p className={cl.location}>{t("location")} {location.city}{location.region && location.city ? "," : ""} {location.region}</p>
             <ForecastCards/>
         </div>
     );

@@ -31,7 +31,6 @@ export default class ForecastAPI {
 
             /* gets raw forecast data */
             const data: IForecastRaw = await response.data
-            console.log(data)
 
             /* returns formatted forecast data */
             return formatResponse(data)

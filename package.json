@@ -25,6 +25,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.2.2",
+    "react-lazy-load-image-component": "^1.6.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.1",
     "react-scripts": "5.0.1",
@@ -55,5 +56,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-lazy-load-image-component": "^1.6.3"
   }
 }
