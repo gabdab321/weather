@@ -12,20 +12,22 @@ export interface IForecastFormatted {
                 tempMin: number
                 weatherCode: number
             },
-            hourly: {
-                date: string,
-                cloudCover: number[],
-                temp: number[],
-                time: string[],
-                weatherCode: number[],
-                windSpeed: number[],
-                precipitation: number[],
-                precipitationProbability: number[],
-                uv_index: number[],
-                windDirection: number[],
-            }
+            hourly: IForecastHourlyFormatted
         }
     }
+}
+
+export interface IForecastHourlyFormatted {
+    date: string,
+    cloudCover: number[],
+    temp: number[],
+    time: string[],
+    weatherCode: number[],
+    windSpeed: number[],
+    precipitation: number[],
+    precipitationProbability: number[],
+    uv_index: number[],
+    windDirection: number[],
 }
 
 export interface IForecastRaw {
