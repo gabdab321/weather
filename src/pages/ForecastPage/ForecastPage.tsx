@@ -9,6 +9,7 @@ import {useTranslation} from "react-i18next";
 import TemperatureSVG from "../../assets/weather/temperature.svg"
 import average from "../../utils/average/average";
 import ForecastSidebar from "../../components/ForecastSidebar/ForecastSidebar";
+import Graph from "../../components/Graph/Graph";
 
 const ForecastPage = () => {
     const dispatch = useAppDispatch()
@@ -29,11 +30,12 @@ const ForecastPage = () => {
 
     return (
         <div className={cl.main}>
-            {dayForecast ?
+            {dayForecast && date ?
                 <>
                     <p className={cl.information}>{t("location")} {city}{region && city ? "," : ""} {region}</p>
                     <div className={cl.forecast}>
                         <ForecastSidebar date={date as string}/>
+                        <Graph forecast={dayForecast[date]}/>
                     </div>
                 </>
                 :

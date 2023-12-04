@@ -19,6 +19,12 @@ interface ForecastSidebarProps {
 
 const ForecastSidebar = ({date}: ForecastSidebarProps) => {
     const dayForecast = useAppSelector(state => state.forecast.forecast?.forecast)
+    let minTemp, maxTemp
+
+    if(dayForecast) {
+        minTemp = Math.round(Math.min(...dayForecast[date as string].hourly.temp))
+        maxTemp = Math.round(Math.max(...dayForecast[date as string].hourly.temp))
+    }
 
     return (
         <div className={cl.sidebar}>
@@ -29,7 +35,7 @@ const ForecastSidebar = ({date}: ForecastSidebarProps) => {
                             <div className={cl.sidebar__icon}><img src={TemperatureSVG} alt=""/></div>
                             <p className={cl.sidebar__name}>Temperature</p>
                         </div>
-                        <p className={cl.sidebar__value}>{average(dayForecast[date as string].hourly.temp)}°C</p>
+                        <p className={cl.sidebar__value}>{minTemp}...{maxTemp}°C</p>
                     </div>
                     <div className={cl.sidebar__container}>
                         <div className={cl.sidebar__name_container}>
@@ -71,7 +77,7 @@ const ForecastSidebar = ({date}: ForecastSidebarProps) => {
                             <div className={cl.sidebar__icon}><img src={UVIndex} alt=""/></div>
                             <p className={cl.sidebar__name}>UV index</p>
                         </div>
-                        <p style={{color: getUvIndexColor(average(dayForecast[date as string].hourly.uv_index))}} className={cl.sidebar__value}>{average(dayForecast[date as string].hourly.uv_index)}</p>
+                        <p style={{color: getUvIndexColor(Math.max(...dayForecast[date as string].hourly.uv_index))}} className={cl.sidebar__value}>{Math.max(...dayForecast[date as string].hourly.uv_index)}</p>
                     </div>
                 </>
                 :
