@@ -15,17 +15,87 @@ export enum ForecastKeys  {
     WindDirection = "windDirection"
 }
 
+interface IParamMeasures {
+    [key: string] : {
+        name: string,
+        nameFormatted: string,
+        measurementUnit: string,
+        minValue: number | ((arr: number[]) => number),
+        maxValue: number | ((arr: number[]) => number)
+    }
+}
+
+const paramMeasures: IParamMeasures = {
+    cloudCover: {
+        name: "Cloud cover",
+        nameFormatted: "Cloud cover  %",
+        measurementUnit: "%",
+        minValue: 0,
+        maxValue: 100
+    },
+    temp: {
+        name: "Temperature",
+        nameFormatted: "Temperature  °C",
+        measurementUnit: "°C",
+        minValue: (arr) => Math.round(Math.min(...arr)) - 5,
+        maxValue: (arr) => Math.round(Math.max(...arr)) + 5
+    },
+    windSpeed: {
+        name: "Wind speed",
+        nameFormatted: "Wind speed  km/h",
+        measurementUnit: "km/h",
+        minValue: 0,
+        maxValue: 40
+    },
+    precipitation: {
+        name: "Precipitation",
+        nameFormatted: "Precipitation  mm",
+        measurementUnit: "mm",
+        minValue: 0,
+        maxValue: 50
+
+    },
+    precipitationProbability: {
+        name: "Precipitation probability",
+        nameFormatted: "Precipitation probability  %",
+        measurementUnit: "%",
+        minValue: 0,
+        maxValue: 100
+    },
+    uv_index: {
+        name: "UV index",
+        nameFormatted: "UV index",
+        measurementUnit: "",
+        minValue: 0,
+        maxValue: 15
+    },
+    windDirection: {
+        name: "Wind direction",
+        nameFormatted: "Wind direction  °",
+        measurementUnit: "°",
+        minValue: 0,
+        maxValue: 359,
+    },
+}
+
 function getChartConfig(forecast: IForecastHourlyFormatted, selectedParam: ForecastKeys): ChartConfiguration {
     const data: number[] = Array.isArray(forecast[selectedParam])
         ? (forecast[selectedParam] as number[])
         : [];
+
+    const measure: {name: string, measurementUnit: string, nameFormatted: string, minValue: number | ((arr: number[]) => number), maxValue: number | ((arr: number[]) => number)} = selectedParam
+        ? paramMeasures[selectedParam]
+        : {name: "Error", measurementUnit: "Error", nameFormatted: "Error", maxValue: 100, minValue: () => 0};
+
+    const suggestedMin = typeof measure.minValue === 'function' ? measure.minValue(data) : measure.minValue;
+    const suggestedMax = typeof measure.maxValue === 'function' ? measure.maxValue(data) : measure.maxValue;
 
     return {
         type: 'line',
         data: {
             labels: forecast.time,
             datasets: [{
-                label: 'Temperature °C',
+                label: measure.nameFormatted,
                 data: data,
                 borderColor: 'red',
                 borderWidth: 2.5,
@@ -55,7 +125,7 @@ function getChartConfig(forecast: IForecastHourlyFormatted, selectedParam: Forec
                 y: {
                     title: {
                         display: true,
-                        text: 'Temperature °C',
+                        text: measure.nameFormatted,
                         color: "#000",
                         font: {
                             size: 18,
@@ -68,15 +138,15 @@ function getChartConfig(forecast: IForecastHourlyFormatted, selectedParam: Forec
                         },
                         color: '#000'
                     },
-                    suggestedMin: Math.round(Math.min(...data)) - 5,
-                    suggestedMax: Math.round(Math.max(...data)) + 5
+                    suggestedMin,
+                    suggestedMax,
                 }
             },
             plugins: {
                 tooltip: {
                     callbacks: {
                         label: (tooltipItem: TooltipItem<any>) => {
-                            return `Temperature ${tooltipItem.parsed.y} °C`;
+                            return `${measure.name} ${tooltipItem.parsed.y} ${measure.measurementUnit}`;
                         },
                     }
                 },
