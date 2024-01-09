@@ -1,0 +1,50 @@
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 12px;
+
+    padding: 12px;
+    margin-top: 30px;
+    &:nth-child(1) {
+        margin-top: 0;
+    }
+
+    cursor: pointer;
+
+    &_selected {
+        background-color: rgba(192, 222, 194, 0.73);
+    }
+
+    &__name_container {
+        display: flex;
+        align-items: center;
+    }
+
+    &__icon {
+        width: 32px;
+        height: 32px;
+
+        & img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__name {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    &__value {
+        font-size: 20px;
+        font-weight: bold;
+        margin-left: 20px;
+
+        & img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

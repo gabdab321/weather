@@ -1,4 +1,4 @@
-import React, {SetStateAction} from 'react';
+import React, {SetStateAction, useRef} from 'react';
 import TemperatureSVG from "../../assets/weather/temperature.svg";
 import CloudSVG from "../../assets/weather/cloudy.svg"
 import WindSVG from "../../assets/weather/wind.svg"
@@ -14,6 +14,8 @@ import cl from "./ForecastSidebar.module.scss"
 import getUvIndexColor from "../../utils/getUvIndexColor/getUvIndexColor";
 import {IForecastHourlyFormatted} from "../../models/IWeather";
 import {ForecastKeys} from "../../consts/chartConfig";
+import getSidebarStructure from "../../consts/sidebarStructure";
+import ForecastSidebarItem from "../ForecastSidebarItem/ForecastSidebarItem";
 
 interface ForecastSidebarProps {
     date: string,
@@ -23,77 +25,11 @@ interface ForecastSidebarProps {
 
 const ForecastSidebar = ({date, selected, setSelected}: ForecastSidebarProps) => {
     const dayForecast = useAppSelector(state => state.forecast.forecast?.forecast)
-    let minTemp, maxTemp
-
-    if(dayForecast) {
-        minTemp = Math.round(Math.min(...dayForecast[date as string].hourly.temp))
-        maxTemp = Math.round(Math.max(...dayForecast[date as string].hourly.temp))
-    }
-
-    function handleSelect(item: ForecastKeys) {
-        setSelected(() => item)
-    }
 
     return (
         <div className={cl.sidebar}>
             {dayForecast ?
-                <>
-                    <div onClick={() => handleSelect(ForecastKeys.Temp)} className={cl.sidebar__container}>
-                        <div className={cl.sidebar__name_container}>
-                            <div className={cl.sidebar__icon}><img src={TemperatureSVG} alt=""/></div>
-                            <p className={cl.sidebar__name}>Temperature</p>
-                        </div>
-                        <p className={cl.sidebar__value}>{minTemp}...{maxTemp}°C</p>
-                    </div>
-
-                    <div onClick={() => handleSelect(ForecastKeys.CloudCover)} className={cl.sidebar__container}>
-                        <div className={cl.sidebar__name_container}>
-                            <div className={cl.sidebar__icon}><img src={CloudSVG} alt=""/></div>
-                            <p className={cl.sidebar__name}>Cloud Cover</p>
-                        </div>
-                        <p className={cl.sidebar__value}>{average(dayForecast[date as string].hourly.cloudCover)}%</p>
-                    </div>
-
-                    <div onClick={() => handleSelect(ForecastKeys.WindSpeed)} className={cl.sidebar__container}>
-                        <div className={cl.sidebar__name_container}>
-                            <div className={cl.sidebar__icon}><img src={WindSVG} alt=""/></div>
-                            <p className={cl.sidebar__name}>Wind speed</p>
-                        </div>
-                        <p className={cl.sidebar__value}>{average(dayForecast[date as string].hourly.windSpeed)}km/h</p>
-                    </div>
-
-                    <div onClick={() => handleSelect(ForecastKeys.Precipitation)} className={cl.sidebar__container}>
-                        <div className={cl.sidebar__name_container}>
-                            <div className={cl.sidebar__icon}><img src={PrecipitationSVG} alt=""/></div>
-                            <p className={cl.sidebar__name}>Precipitation</p>
-                        </div>
-                        <p className={cl.sidebar__value}>{average(dayForecast[date as string].hourly.precipitation)}mm</p>
-                    </div>
-
-                    <div onClick={() => handleSelect(ForecastKeys.PrecipitationProbability)} className={cl.sidebar__container}>
-                        <div className={cl.sidebar__name_container}>
-                            <div className={cl.sidebar__icon}><img src={RainSVG} alt=""/></div>
-                            <p className={cl.sidebar__name}>Rain Probability</p>
-                        </div>
-                        <p className={cl.sidebar__value}>{average(dayForecast[date as string].hourly.precipitation)}%</p>
-                    </div>
-
-                    <div onClick={() => handleSelect(ForecastKeys.WindDirection)} className={cl.sidebar__container}>
-                        <div className={cl.sidebar__name_container}>
-                            <div className={cl.sidebar__icon}><img src={CompassSVG} alt=""/></div>
-                            <p className={cl.sidebar__name}>Wind direction</p>
-                        </div>
-                        <div style={{width: "32px", height: "32px"}} className={cl.sidebar__value}><img style={{transform: `rotate(${average(dayForecast[date as string].hourly.windDirection)}deg)`}} src={WindDirectionSVG} alt=""/></div>
-                    </div>
-
-                    <div onClick={() => handleSelect(ForecastKeys.UvIndex)} className={cl.sidebar__container}>
-                        <div className={cl.sidebar__name_container}>
-                            <div className={cl.sidebar__icon}><img src={UVIndex} alt=""/></div>
-                            <p className={cl.sidebar__name}>UV index</p>
-                        </div>
-                        <p style={{color: getUvIndexColor(Math.max(...dayForecast[date as string].hourly.uv_index))}} className={cl.sidebar__value}>{Math.max(...dayForecast[date as string].hourly.uv_index)}</p>
-                    </div>
-                </>
+                getSidebarStructure(dayForecast[date as string].hourly).map(item => <ForecastSidebarItem selected={selected} setSelected={setSelected} data={item} key={item.name}/>)
                 :
                 <Loader/>
             }
