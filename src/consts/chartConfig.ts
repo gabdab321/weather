@@ -104,6 +104,7 @@ function getChartConfig(forecast: IForecastHourlyFormatted, selectedParam: Forec
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 x: {
                     title: {

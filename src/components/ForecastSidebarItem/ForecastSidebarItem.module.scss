@@ -6,12 +6,13 @@
     border-radius: 12px;
 
     padding: 12px;
-    margin-top: 30px;
-    &:nth-child(1) {
-        margin-top: 0;
-    }
 
     cursor: pointer;
+    transition: all 0.5s ease;
+    &:hover {
+        background-color: rgba(192, 222, 194, 0.45);
+    }
+
 
     &_selected {
         background-color: rgba(192, 222, 194, 0.73);
@@ -23,8 +24,8 @@
     }
 
     &__icon {
-        width: 32px;
-        height: 32px;
+        width: 25px;
+        height: 25px;
 
         & img {
             width: 100%;
@@ -33,18 +34,70 @@
     }
 
     &__name {
-        font-size: 20px;
+        font-size: 16px;
         font-weight: bold;
     }
 
     &__value {
-        font-size: 20px;
+        font-size: 16px;
         font-weight: bold;
-        margin-left: 20px;
+        margin-left: 15px;
 
         & img {
             width: 100%;
             height: 100%;
+        }
+    }
+
+    @media screen and (max-width: 1570px) {
+        padding: 6px;
+
+        &__icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        &__name {
+            font-size: 14px;
+        }
+
+        &__value {
+            font-size: 14px;
+            margin-left: 10px;
+        }
+    }
+
+    @media screen and (max-width: 1250px){
+        margin-top: 10px;
+
+        &__icon {
+            width: 25px;
+            height: 25px;
+        }
+
+        &__name {
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        &__value {
+            font-size: 18px;
+        }
+    }
+
+    @media screen and (max-width: 400px){
+        &__icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        &__name {
+            font-size: 16px;
+            margin-left: 5px;
+        }
+
+        &__value {
+            font-size: 16px;
         }
     }
 }
