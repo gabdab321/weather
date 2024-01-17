@@ -29,8 +29,6 @@ const ForecastPage = () => {
         getForecastByDate()
     }, [])
 
-    console.log(sidebarSelected)
-
     return (
         <div className={cl.main}>
             {dayForecast && date ?

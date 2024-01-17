@@ -1,4 +1,15 @@
 .map {
     width: 90%;
-    height: 600px;
+    height: 900px;
+
+    margin-bottom: 50px;
+
+    @media screen and (max-width: 1700px) {
+        height: 600px;
+    }
+
+    @media screen and (max-width: 600px) {
+        width: 95%;
+        height: 500px;
+    }
 }

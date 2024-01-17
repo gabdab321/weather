@@ -1,33 +1,9 @@
 import React, {useState} from 'react';
-import GoogleMapReact, {ClickEventValue} from "google-map-react";
 import {GoogleMapsAPIKey} from "../../consts/apiKey";
 import cl from "./InteractiveMap.module.scss"
-import i18n from "i18next";
 import {useAppSelector} from "../../hooks/reduxHooks";
 import  {APIProvider, Map, AdvancedMarker, Pin, InfoWindow} from "@vis.gl/react-google-maps";
 import {MapMouseEvent} from "@vis.gl/react-google-maps/dist/components/map/use-map-events";
-
-interface MarkerProps {
-    lat: number
-    lng: number
-    text: string
-}
-
-const Marker:React.FC<MarkerProps> = ({text}) => {
-    return <div style={{
-        color: 'white',
-        background: 'grey',
-        padding: '15px 10px',
-        display: 'inline-flex',
-        textAlign: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: '100%',
-        transform: 'translate(-50%, -50%)'
-    }}>
-        {text}
-    </div>
-}
 
 /* Component with configuration for Google Maps */
 const InteractiveMap = () => {

@@ -32,6 +32,7 @@ const MainPage = () => {
         <div className={cl.main}>
             <p className={cl.location}>{t("location")} {location.city}{location.region && location.city ? "," : ""} {location.region}</p>
             <ForecastCards/>
+            <p className={cl.location_choose}>{t(`mapPick`)}</p>
             <InteractiveMap/>
         </div>
     );

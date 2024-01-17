@@ -17,8 +17,10 @@ export default getSidebarStructure;
 
 export interface SidebarStructure {
     name: string,
+    nameUk: string
     icon: string,
     value: string | number | JSX.Element,
+    valueUk: string | number | JSX.Element,
     paramName: ForecastKeys
 }
 
@@ -31,48 +33,64 @@ function getSidebarStructure(hourlyForecast: IForecastHourlyFormatted): SidebarS
     return [
         {
             name: "Temperature",
+            nameUk: "Температура",
             icon: TemperatureSVG,
             value: `${minTemp}°C...${maxTemp}°C`,
+            valueUk: `${minTemp}°C...${maxTemp}°C`,
             paramName: ForecastKeys.Temp
         },
         {
             name: "Cloud Cover",
+            nameUk: "Хмарність",
             icon: CloudSVG,
             value: average(hourlyForecast.cloudCover) + "%",
+            valueUk: average(hourlyForecast.cloudCover) + "%",
             paramName: ForecastKeys.CloudCover
         },
         {
             name: "Wind speed",
+            nameUk: "Швид. вітру",
             icon: WindSVG,
             value: average(hourlyForecast.windSpeed) + "km/h",
+            valueUk: average(hourlyForecast.windSpeed) + "км/год",
             paramName: ForecastKeys.WindSpeed
         },
         {
             name: "Precipitation",
+            nameUk: "Опади",
             icon: PrecipitationSVG,
             value: average(hourlyForecast.precipitation) + "mm",
+            valueUk: average(hourlyForecast.precipitation) + "мм",
             paramName: ForecastKeys.Precipitation
         },
         {
             name: "Rain Probability",
+            nameUk: "Ймовірність опадів",
             icon: RainSVG,
             value: average(hourlyForecast.precipitation) + "%",
+            valueUk: average(hourlyForecast.precipitation) + "%",
             paramName: ForecastKeys.PrecipitationProbability
         },
         {
             name: "Wind direction",
+            nameUk: "Нарям вітру",
             icon: CompassSVG,
             /* Rendering a div with a rotated wind direction arrow based on the average wind direction */
             value: <div style={{width: "32px", height: "32px"}} className={cl.sidebar__value}>
+                <img style={{transform: `rotate(${average(hourlyForecast.windDirection)}deg)`}} src={WindDirectionSVG} alt=""/>
+            </div>,
+            valueUk:  <div style={{width: "32px", height: "32px"}} className={cl.sidebar__value}>
                 <img style={{transform: `rotate(${average(hourlyForecast.windDirection)}deg)`}} src={WindDirectionSVG} alt=""/>
             </div>,
             paramName: ForecastKeys.WindDirection
         },
         {
             name: "UV index",
+            nameUk: "УФ-індекс",
             icon: UVIndex,
             /* Rendering UV index value with color based on the UV index level */
             value: <span style={{color: getUvIndexColor(Math.max(...hourlyForecast.uv_index))}}>{average(hourlyForecast.precipitation)}</span>,
+            valueUk: <span style={{color: getUvIndexColor(Math.max(...hourlyForecast.uv_index))}}>{average(hourlyForecast.precipitation)}</span>,
             paramName: ForecastKeys.UvIndex
         },
     ]
