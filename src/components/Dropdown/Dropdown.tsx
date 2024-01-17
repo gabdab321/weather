@@ -26,8 +26,10 @@ const Dropdown = ({visible, places, setQuery}: DropdownProps) => {
         setQuery("")
 
         const location = {
-            latitude: place.properties.lat,
-            longitude: place.properties.lon,
+            position: {
+                lat: place.properties.lat,
+                lng: place.properties.lon,
+            },
             city: place.properties.city,
             region: place.properties.state
         }

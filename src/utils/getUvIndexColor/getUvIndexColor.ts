@@ -1,5 +1,6 @@
 export default getUvIndexColor
 
+// Function that simply returns color by UV index.
 function getUvIndexColor(index: number) {
     if(index >= 0 && index <= 2) return "#41A94A"
     if(index >= 3 && index <= 5) return "#F5E50C"

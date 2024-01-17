@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {IForecastFormatted} from "../../models/IWeather";
 import cl from "./ForecastCards.module.scss";
 import ForecastCard from "../ForecastCard/ForecastCard";
 import Loader from "../UI/Loader/Loader";
@@ -14,12 +13,14 @@ const ForecastCards = () => {
     function handleMouseOver(e: React.MouseEvent<HTMLDivElement>) {
         const target = e.target
         if(target instanceof HTMLElement) {
+            // checking if the target is not part of the container`s inner elements
             if(!target.classList.contains(cl.container)) {
                 setIsMouseOver(true)
             }
         }
     }
 
+    /* removes blur and resize card to normal size */
     function handleMouseOut(e: React.MouseEvent<HTMLDivElement>) {
         const target = e.target
         if(target instanceof HTMLElement) {
@@ -28,7 +29,6 @@ const ForecastCards = () => {
             }
         }
     }
-
 
     return (
         <div

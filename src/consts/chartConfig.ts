@@ -25,6 +25,7 @@ interface IParamMeasures {
     }
 }
 
+/* object containing measurement details for each weather parameter */
 const paramMeasures: IParamMeasures = {
     cloudCover: {
         name: "Cloud cover",
@@ -78,15 +79,19 @@ const paramMeasures: IParamMeasures = {
     },
 }
 
+// Function to generate Chart.js configuration based on forecast data and selected parameter
 function getChartConfig(forecast: IForecastHourlyFormatted, selectedParam: ForecastKeys): ChartConfiguration {
+    // Extracting data for the selected parameter from the forecast
     const data: number[] = Array.isArray(forecast[selectedParam])
         ? (forecast[selectedParam] as number[])
         : [];
 
+    // Extracting measurement details for the selected parameter
     const measure: {name: string, measurementUnit: string, nameFormatted: string, minValue: number | ((arr: number[]) => number), maxValue: number | ((arr: number[]) => number)} = selectedParam
         ? paramMeasures[selectedParam]
         : {name: "Error", measurementUnit: "Error", nameFormatted: "Error", maxValue: 100, minValue: () => 0};
 
+    // Calculating suggested min and max values for the chart based on measurement details
     const suggestedMin = typeof measure.minValue === 'function' ? measure.minValue(data) : measure.minValue;
     const suggestedMax = typeof measure.maxValue === 'function' ? measure.maxValue(data) : measure.maxValue;
 

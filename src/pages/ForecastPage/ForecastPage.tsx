@@ -15,13 +15,14 @@ const ForecastPage = () => {
     const { t } = useTranslation()
     const {date} = useParams()
     const dayForecast = useAppSelector(state => state.forecast.forecast?.forecast);
-    const {city, region, latitude, longitude} = useAppSelector(state => state.location)
+    const {city, region, position} = useAppSelector(state => state.location)
     const [sidebarSelected, setSidebarSelected] = useState<ForecastKeys>(ForecastKeys.Temp)
 
     /* using api to get forecast for the whole week, then getting desired day by date as a key */
     useEffect(() => {
         async function getForecastByDate() {
-            const data = await ForecastAPI.getForecast({latitude, longitude});
+            const data = await ForecastAPI.getForecast(position);
+            /* Dispatching action to set the fetched forecast data in the Redux store */
             if(data) dispatch(setForecast(data))
         }
 
