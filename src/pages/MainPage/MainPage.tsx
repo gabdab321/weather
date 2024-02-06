@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import ForecastAPI from "../../services/ForecastAPI";
 import ForecastCards from "../../components/ForecastCards/ForecastCards";
 import cl from "./MainPage.module.scss"
 import {useTranslation} from "react-i18next";
 import {setForecast} from "../../redux/slices/forecastSlice";
-import GoogleMapReact, {ClickEventValue} from "google-map-react"
-import {GoogleMapsAPIKey} from "../../consts/apiKey";
 import InteractiveMap from "../../components/InteractiveMap/InteractiveMap";
 
 const MainPage = () => {

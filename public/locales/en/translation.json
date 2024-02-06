@@ -3,14 +3,15 @@
   "location": "Weather in",
   "details": "Details",
   "mapPick": "Or choose your location on map",
-  "forecastPage": {
-    "temp": "Temperature",
-    "cloudCover": "Cloud cover",
-    "windSpeed": "Wind speed",
-    "precipitation": "Precipitation",
-    "rainProbability": "Rain probability",
-    "windDirection": "Wind direction",
-    "UvIndex": "UV index",
-    "time": "Time"
-  }
+
+  "temperature": "Temperature",
+  "cloudCover": "Cloud cover",
+  "windSpeed": "Wind speed",
+  "precipitation": "Precipitation",
+  "rainProbability": "Rain probability",
+  "windDirection": "Wind direction",
+  "UvIndex": "UV index",
+  "time": "Time",
+  "kilometersPerHour": "km/h",
+  "millimeters": "mm"
 }

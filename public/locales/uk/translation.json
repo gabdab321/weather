@@ -3,14 +3,15 @@
   "location": "Погода в",
   "details": "Деталі",
   "mapPick": "Або ж оберіть потрібне місце на мапі",
-  "forecastPage": {
-    "temp": "Температура",
-    "cloudCover": "Хмарність",
-    "windSpeed": "Швид. вітру",
-    "precipitation": "Опади",
-    "rainProbability": "Ймовірність опадів",
-    "windDirection": "Нарям вітру",
-    "UvIndex": "УФ-індекс",
-    "time": "Час"
-  }
+
+  "temperature": "Температура",
+  "cloudCover": "Хмарність",
+  "windSpeed": "Швид. вітру",
+  "precipitation": "Опади",
+  "rainProbability": "Ймовірність опадів",
+  "windDirection": "Нарям вітру",
+  "UvIndex": "УФ-індекс",
+  "time": "Час",
+  "kilometersPerHour": "км/год",
+  "millimeters": "мм"
 }

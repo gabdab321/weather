@@ -14,8 +14,16 @@
 
     text-align: center;
 
-    @media screen and (max-width: 500px){
+    @media screen and (max-width: 830px){
         font-size: 30px;
+    }
+
+    @media screen and (max-width: 600px){
+        width: 90%;
+    }
+
+    @media screen and (max-width: 490px){
+        font-size: 25px;
     }
 }
 

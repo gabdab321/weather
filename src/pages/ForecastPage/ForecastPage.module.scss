@@ -9,7 +9,7 @@
     padding: 50px;
 
     background-color: #272727;
-    background-image: url("../../assets/rain-gif.gif");
+    background-image: url("../../assets/weatherGifs/rain-gif.gif");
     background-size: cover;
     background-position: center;
 
@@ -18,7 +18,7 @@
     }
 
     @media screen and (max-width: 800px) {
-        background-image: url("../../assets/rain-mobile.gif");
+        background-image: url("../../assets/weatherGifs/rain-gif.gif");
     }
 
     @media screen and (max-width: 650px){

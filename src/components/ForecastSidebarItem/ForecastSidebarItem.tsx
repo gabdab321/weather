@@ -13,7 +13,6 @@ interface ForecastSidebarItemProps {
 
 const ForecastSidebarItem = ({selected, setSelected, data}: ForecastSidebarItemProps) => {
     const selectedRef = useRef(null)
-    const language = i18n.language
 
     function handleSelect() {
         setSelected(() => data.paramName)
@@ -25,9 +24,9 @@ const ForecastSidebarItem = ({selected, setSelected, data}: ForecastSidebarItemP
         <div ref={selectedRef} onClick={handleSelect} className={classNames}>
             <div className={cl.item__name_container}>
                 <div className={cl.item__icon}><img src={data.icon} alt=""/></div>
-                <div className={cl.item__name}>{language == "uk" ? data.nameUk : data.name}</div>
+                <div className={cl.item__name}>{data.name}</div>
             </div>
-            <div className={cl.item__value}>{language == "uk" ? data.valueUk : data.value}</div>
+            <div className={cl.item__value}>{data.value}</div>
         </div>
     );
 };
