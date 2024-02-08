@@ -9,16 +9,12 @@
     padding: 50px;
 
     background-color: #272727;
-    background-image: url("../../assets/weatherGifs/rain-gif.gif");
     background-size: cover;
     background-position: center;
+    background-image: url("../../assets/weatherGifs/snowfall.gif");
 
     @media screen and (max-width: 1570px) {
         padding: 20px;
-    }
-
-    @media screen and (max-width: 800px) {
-        background-image: url("../../assets/weatherGifs/rain-gif.gif");
     }
 
     @media screen and (max-width: 650px){
@@ -35,6 +31,9 @@
     margin-top: 30px;
 
     text-align: center;
+    background-color: rgba(0,0,0,0.4);
+    padding: 0 10px;
+    border-radius: 10px;
 
     @media screen and (max-width: 1570px){
         margin-top: 50px;
@@ -56,6 +55,7 @@
 }
 
 .forecast {
+    //display: none;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -9,6 +9,7 @@ import {useTranslation} from "react-i18next";
 import ForecastSidebar from "../../components/ForecastSidebar/ForecastSidebar";
 import Graph from "../../components/Graph/Graph";
 import {ForecastKeys} from "../../consts/chartConfig";
+import {wmo} from "../../consts/wmo";
 
 const ForecastPage = () => {
     const dispatch = useAppDispatch()
@@ -29,8 +30,20 @@ const ForecastPage = () => {
         getForecastByDate()
     }, [])
 
+    let backgroundGif = ""
+
+    if(dayForecast && date && window.innerWidth > 800) {
+        backgroundGif = `url("${wmo[dayForecast[date].daily.weatherCode].gifPath}")`
+    } else if(dayForecast && date && window.innerWidth < 800) {
+        backgroundGif = `url("${wmo[dayForecast[date].daily.weatherCode].gifMobilePath}")`
+    } else {
+        backgroundGif = ""
+    }
+
+    console.log(backgroundGif)
+
     return (
-        <div className={cl.main}>
+        <div style={{backgroundImage: backgroundGif}} className={cl.main}>
             {dayForecast && date ?
                 <>
                     <p className={cl.information}>{t("location")} {city}{region && city ? "," : ""} {region}</p>
