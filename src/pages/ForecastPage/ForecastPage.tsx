@@ -30,8 +30,9 @@ const ForecastPage = () => {
         getForecastByDate()
     }, [])
 
-    let backgroundGif = ""
+    let backgroundGif: string
 
+    /* if screen width is less than 800px, then mobile version of gif is used */
     if(dayForecast && date && window.innerWidth > 800) {
         backgroundGif = `url("${wmo[dayForecast[date].daily.weatherCode].gifPath}")`
     } else if(dayForecast && date && window.innerWidth < 800) {
@@ -40,7 +41,6 @@ const ForecastPage = () => {
         backgroundGif = ""
     }
 
-    console.log(backgroundGif)
 
     return (
         <div style={{backgroundImage: backgroundGif}} className={cl.main}>

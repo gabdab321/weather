@@ -8,10 +8,8 @@ import {setForecast} from "../../redux/slices/forecastSlice";
 import InteractiveMap from "../../components/InteractiveMap/InteractiveMap";
 
 const MainPage = () => {
-    //TODO: add geocoding
     const { t } = useTranslation()
     const location = useAppSelector(state => state.location)
-    const weekForecast = useAppSelector(state => state.forecast.forecast)
     const dispatch = useAppDispatch();
 
     useEffect(() => {

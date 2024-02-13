@@ -54,6 +54,17 @@
     }
 }
 
+@keyframes forecastIn {
+    from {
+        transform: translateY(50%);
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .forecast {
     //display: none;
     display: flex;
@@ -68,6 +79,7 @@
     margin: 20px 0;
 
     border-radius: 12px;
+    animation: forecastIn 1.5s ease;
 
     &__sidebar {
         display: flex;

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {GoogleMapsAPIKey} from "../../consts/apiKey";
 import cl from "./InteractiveMap.module.scss"
 import {useAppSelector} from "../../hooks/reduxHooks";
-import  {APIProvider, Map, AdvancedMarker, Pin, InfoWindow} from "@vis.gl/react-google-maps";
+import  {APIProvider, Map, AdvancedMarker} from "@vis.gl/react-google-maps";
 import {MapMouseEvent} from "@vis.gl/react-google-maps/dist/components/map/use-map-events";
 
 /* Component with configuration for Google Maps */

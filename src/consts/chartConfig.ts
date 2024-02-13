@@ -24,7 +24,7 @@ interface IParam {
 }
 
 // Function to generate Chart.js configuration based on forecast data and selected parameter
-function getChartConfig(forecast: IForecastHourlyFormatted, selectedParam: ForecastKeys, language: string): ChartConfiguration {
+function getChartConfig(forecast: IForecastHourlyFormatted, selectedParam: ForecastKeys): ChartConfiguration {
     const t = i18n.t
 
     /* object containing measurement details for each weather parameter.

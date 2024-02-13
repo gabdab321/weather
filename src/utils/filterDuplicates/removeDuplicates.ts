@@ -1,5 +1,4 @@
 import {IPlace} from "../../models/IPlace";
-import {formatPlace} from "../formatPlace/formatPlace";
 
 /**
  * Removes all duplicates from autocomplete places array. Finds duplicates by formatted property.

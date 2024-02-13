@@ -17,7 +17,7 @@ const Search = () => {
     const [dropdown, setDropdown] = useState<boolean>(false) // dropdown visibility
 
     const [query, setQuery] = useState<string>("") // input value
-    const debouncedQuery = useDebounce<string>(query, 500) // debounced input value
+    const debouncedQuery = useDebounce<string>(query, 300) // debounced input value
 
     const [places, setPlaces] = useState<IPlace[]>([]) // an array of autocompleted places
 

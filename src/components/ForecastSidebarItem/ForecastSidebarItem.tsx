@@ -1,9 +1,8 @@
-import React, {JSX, SetStateAction, useRef} from 'react';
+import React, {SetStateAction, useRef} from 'react';
 import cl from "./ForecastSidebarItem.module.scss"
 import {ForecastKeys} from "../../consts/chartConfig";
 import {IForecastHourlyFormatted} from "../../models/IWeather";
 import {SidebarStructure} from "../../consts/sidebarStructure";
-import i18n from "../../i18n";
 
 interface ForecastSidebarItemProps {
     selected: keyof IForecastHourlyFormatted,

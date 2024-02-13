@@ -3,19 +3,13 @@ import cl from "./Graph.module.scss"
 import Chart, { ChartConfiguration } from 'chart.js/auto';
 import {IForecastHourlyFormatted} from "../../models/IWeather";
 import getChartConfig, {ForecastKeys} from "../../consts/chartConfig";
-import i18next from "i18next";
 
 interface GraphProps {
     forecast: IForecastHourlyFormatted
     selectedParam: ForecastKeys
 }
 
-//TODO:make better tooltips
-//TODO:make smth like compass for wind direction param
-
 const Graph = ({forecast, selectedParam}: GraphProps) => {
-    const {language} = i18next
-
     /* defining refs for chart canvas */
     const chartContainer = useRef<HTMLCanvasElement | null>(null);
     const chartInstance = useRef<Chart | null>(null);
@@ -29,7 +23,7 @@ const Graph = ({forecast, selectedParam}: GraphProps) => {
                     chartInstance.current.destroy();
                 }
                 /* using separate function to create config object with a necessary params and chart language */
-                const chartConfig: ChartConfiguration = getChartConfig(forecast, selectedParam, language)
+                const chartConfig: ChartConfiguration = getChartConfig(forecast, selectedParam)
                 chartInstance.current = new Chart(ctx, chartConfig);
             }
         }
@@ -39,7 +33,7 @@ const Graph = ({forecast, selectedParam}: GraphProps) => {
                 chartInstance.current.destroy();
             }
         };
-    }, [selectedParam, language]); // chart is changing with param selection and changing language
+    }, [selectedParam]); // chart is changing with param selection and changing language
 
     return (
         <div className={cl.graph}>

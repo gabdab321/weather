@@ -1,7 +1,6 @@
 import React from 'react';
 import cl from "./Navbar.module.scss"
 import Search from "../Search/Search";
-import {useTranslation} from "react-i18next";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 
 const Navbar = () => {
