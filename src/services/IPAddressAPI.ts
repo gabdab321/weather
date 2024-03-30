@@ -2,6 +2,7 @@ import axios from "axios";
 import {IPAddressAPIKey} from "../consts/apiKey";
 import defaultLocation from "../consts/defaultLocation";
 import {locationState} from "../redux/slices/locationSlice";
+import GeocodingAPI from "./GeocodingAPI";
 
 /* used for defining user`s primary geolocation */
 export default class IPAddressAPI {
@@ -15,11 +16,25 @@ export default class IPAddressAPI {
                 return defaultLocation
             }
 
+            const location = {
+                lat: +response.data.loc.split(",")[0],
+                lng: +response.data.loc.split(",")[1],
+            }
+
+            const geocodingResult = await GeocodingAPI.reverseGeocoding(location)
+
+            // if geocoding gave some results on this location, returns object with geocoded data(much better than data provided by IP api)
+            if(geocodingResult) {
+                return {
+                    position: location,
+                    city: geocodingResult.city,
+                    region: geocodingResult.region
+                }
+            }
+
+            // if geocoding returned null
             return {
-                position: {
-                    lat: +response.data.loc.split(",")[0],
-                    lng: +response.data.loc.split(",")[1],
-                },
+                position: location,
                 city: response.data.city,
                 region: response.data.region
             }

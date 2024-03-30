@@ -13,5 +13,7 @@
   "UvIndex": "UV index",
   "time": "Time",
   "kilometersPerHour": "km/h",
-  "millimeters": "mm"
+  "millimeters": "mm",
+
+  "geocodingError": "Some problems occurred while fetching desired location"
 }

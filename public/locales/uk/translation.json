@@ -13,5 +13,7 @@
   "UvIndex": "УФ-індекс",
   "time": "Час",
   "kilometersPerHour": "км/год",
-  "millimeters": "мм"
+  "millimeters": "мм",
+
+  "geocodingError": "Виникли проблеми при визначені потрібної локації"
 }
