@@ -3,9 +3,10 @@ import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import ForecastAPI from "../../services/ForecastAPI";
 import ForecastCards from "../../components/ForecastCards/ForecastCards";
 import cl from "./MainPage.module.scss"
-import {useTranslation} from "react-i18next";
+import {I18nextProvider, useTranslation} from "react-i18next";
 import {setForecast} from "../../redux/slices/forecastSlice";
 import InteractiveMap from "../../components/InteractiveMap/InteractiveMap";
+import i18next from "i18next";
 
 const MainPage = () => {
     const { t } = useTranslation()
@@ -26,7 +27,9 @@ const MainPage = () => {
 
     return (
         <div className={cl.main}>
-            <p className={cl.location}>{t("location")} {location.city}{location.region && location.city ? "," : ""} {location.region}</p>
+            <I18nextProvider i18n={i18next}>
+                <p className={cl.location}>{t("location")} {location.city}{location.region && location.city ? "," : ""} {location.region}</p>
+            </I18nextProvider>
             <ForecastCards/>
             <p className={cl.location_choose}>{t(`mapPick`)}</p>
             <InteractiveMap/>
